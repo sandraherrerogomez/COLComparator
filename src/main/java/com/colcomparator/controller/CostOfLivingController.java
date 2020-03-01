@@ -29,7 +29,15 @@ public class CostOfLivingController {
     @GetMapping("cityComparator")
     public NumbeoData getCityData(@RequestParam String cityName, @RequestParam String cityName2,
                                   @RequestParam String country1, @RequestParam String country2,
-                                  @RequestParam double amount1, @RequestParam double amount2, @RequestParam String currency) throws NumbeoParsingException {
+                                  @RequestParam double amount1, @RequestParam double amount2, @RequestParam String currency)
+            throws NumbeoParsingException {
         return numbeoParserSvc.getNumbeoData(country1, country2, cityName, cityName2, amount1, amount2, currency);
     }
+
+    @GetMapping("indices")
+    public String getIndicesInfo(@RequestParam String city, @RequestParam String country){
+        return costOfLivingService.getIndicesNumbeo(city, country);
+    }
+
+
 }
