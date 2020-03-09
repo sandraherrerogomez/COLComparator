@@ -39,5 +39,10 @@ public class CostOfLivingController {
         return costOfLivingService.getIndicesNumbeo(city, country);
     }
 
+    @GetMapping("cityPrices")
+    public String getCityPrices(@RequestParam String city, @RequestParam String country){
+        return costOfLivingService.getCitiesPrices(city, country);
+    }
+
 
 }

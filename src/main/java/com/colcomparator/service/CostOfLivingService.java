@@ -16,4 +16,9 @@ public class CostOfLivingService {
         String URL="http://www.numbeo.com/api/indices?api_key=jr5prcv99u730v&query="+city+", "+country;
         return this.restTemplate.getForObject(URL, String.class);
     }
+
+    public String getCitiesPrices(String city, String country){
+        String URL="http://www.numbeo.com/api/city_prices_raw?api_key=jr5prcv99u730v&query="+city+", "+country;
+        return this.restTemplate.getForObject(URL, String.class);
+    }
 }
