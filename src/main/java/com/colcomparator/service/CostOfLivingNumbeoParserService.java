@@ -24,8 +24,8 @@ public class CostOfLivingNumbeoParserService {
             String temp = city2Amount.substring(0, city2Amount.length()-4);
             temp = temp.replace(",", "");
             double numbeoCity2Amount= Double.parseDouble(temp);
-            NumbeoData data= NumbeoData.builder().amountCity1(reqAmount1)
-                                                    .amountCity2(numbeoCity2Amount).city1(city1).city2(city2).build();
+            NumbeoData data= NumbeoData.builder().amountCity1Numbeo(reqAmount1)
+                                                    .amountCity2Numbeo(numbeoCity2Amount).city1Numbeo(city1).city2Numbeo(city2).build();
             return data;
         } catch (IOException e) {
             e.printStackTrace();
