@@ -1,6 +1,7 @@
 package com.colcomparator.controller;
 
 import com.colcomparator.exceptions.NumbeoParsingException;
+import com.colcomparator.model.Cities;
 import com.colcomparator.model.NumbeoData;
 import com.colcomparator.service.CostOfLivingNumbeoParserService;
 import com.colcomparator.service.CostOfLivingService;
@@ -9,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 //Numbeo key jr5prcv99u730v
 
@@ -42,6 +45,10 @@ public class CostOfLivingController {
     @GetMapping("cityPrices")
     public String getCityPrices(@RequestParam String city, @RequestParam String country){
         return costOfLivingService.getCitiesPrices(city, country);
+    }
+    @GetMapping("cities")
+    public List<String> getAvailableCities(){
+        return costOfLivingService.getAvailableCities();
     }
 
 
