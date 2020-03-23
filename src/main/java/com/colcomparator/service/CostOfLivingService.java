@@ -36,7 +36,7 @@ public class CostOfLivingService {
 
         List<String> countriesStr = countries.getCountries().stream().map(cApi -> cApi.getName()).collect(Collectors.toList());
         //Lista de ciudades, que los paises coincidan con los que soportamos
-        return response.getCities().stream().filter(city -> countriesStr.contains(city.getCountry())).map(c -> c.getCity()).collect(Collectors.toList());
+        return response.getCities().stream().filter(city -> countriesStr.contains(city.getCountry())).map(c -> c.getCity() + " -> " + c.getCountry()).collect(Collectors.toList());
     }
 
 
