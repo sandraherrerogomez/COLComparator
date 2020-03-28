@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Numbeo key jr5prcv99u730v
@@ -52,4 +53,10 @@ public class CostOfLivingController {
     }
 
 
+    @GetMapping("allData")
+    public List<String> getColData(@RequestParam String cityName, @RequestParam String cityName2,
+                                   @RequestParam String country1, @RequestParam String country2) throws NumbeoParsingException {
+
+        return costOfLivingService.getAllData(cityName, cityName2, country1, country2);
+    }
 }
