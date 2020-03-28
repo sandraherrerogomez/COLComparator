@@ -4,6 +4,7 @@ import com.colcomparator.dao.APIDataDAO;
 import com.colcomparator.model.APIDataDaoEntity;
 import com.colcomparator.model.Cities;
 import com.colcomparator.model.CountriesAPI;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
@@ -55,18 +56,36 @@ public class CostOfLivingService {
 
     public List<String> getAllData(String cityName, String cityName2, String country1, String country2){
         List<String> data = new ArrayList();
+        String indices1;
+        String indices2;
+        String cityPrices1;
+        String cityPrices2;
+        Optional<APIDataDaoEntity> cityData = dao.findById(cityName);
+        Optional<APIDataDaoEntity> cityData2 = dao.findById(cityName2);
 
 
-        String indices1=getIndicesNumbeo(cityName,country1);
-        String indices2=getIndicesNumbeo(cityName2,country2);
+        if(cityData.isPresent() == false) {
+             indices1=getIndicesNumbeo(cityName,country1);
+             cityPrices1 = getCitiesPrices(cityName,country1);
+            dao.save(APIDataDaoEntity.builder().city(cityName).indexesdata(indices1).pricesdata(cityPrices1).build());
+
+        } else {
+            indices1 = cityData.get().getIndexesdata();
+            cityPrices1 = cityData.get().getPricesdata();
+        }
+        if(cityData2.isPresent() == false) {
+             indices2=getIndicesNumbeo(cityName,country1);
+             cityPrices2 = getCitiesPrices(cityName,country1);
+            dao.save(APIDataDaoEntity.builder().city(cityName2).indexesdata(indices2).pricesdata(cityPrices2).build());
+
+        }else {
+            indices2 = cityData2.get().getIndexesdata();
+            cityPrices2 = cityData2.get().getPricesdata();
+        }
         data.add(indices1);
         data.add(indices2);
-        String cityPrices1 = getCitiesPrices(cityName,country1);
-        String cityPrices2 = getCitiesPrices(cityName2,country2);
         data.add(cityPrices1);
         data.add(cityPrices2);
-        dao.save(APIDataDaoEntity.builder().city(cityName).indexesdata(indices1).pricesdata(cityPrices1).build());
-        dao.save(APIDataDaoEntity.builder().city(cityName2).indexesdata(indices2).pricesdata(cityPrices2).build());
         return data;
     }
 
