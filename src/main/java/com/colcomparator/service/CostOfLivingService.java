@@ -74,8 +74,8 @@ public class CostOfLivingService {
             cityPrices1 = cityData.get().getPricesdata();
         }
         if(cityData2.isPresent() == false) {
-             indices2=getIndicesNumbeo(cityName,country1);
-             cityPrices2 = getCitiesPrices(cityName,country1);
+             indices2=getIndicesNumbeo(cityName2,country2);
+             cityPrices2 = getCitiesPrices(cityName2,country2);
             dao.save(APIDataDaoEntity.builder().city(cityName2).indexesdata(indices2).pricesdata(cityPrices2).build());
 
         }else {

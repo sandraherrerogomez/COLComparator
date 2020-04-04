@@ -27,9 +27,9 @@ public class CostOfLivingNumbeoParserService {
             NumbeoData data= NumbeoData.builder().amountCity1Numbeo(reqAmount1)
                                                     .amountCity2Numbeo(numbeoCity2Amount).city1Numbeo(city1).city2Numbeo(city2).build();
             return data;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            throw new NumbeoParsingException("Error querying numbeo at URL: "+URL);
+            return NumbeoData.builder().build();
         }
 
     }
