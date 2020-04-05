@@ -17,7 +17,8 @@ public class CostOfLivingNumbeoParserServiceTest {
   //Test existing cities with enough data
   public void testValidData() throws NumbeoParsingException {
     int reqAmount1 = 50000;
-  NumbeoData result = svc.getNumbeoData("Spain", "Ireland", "Madrid", "Dublin", reqAmount1, 65000, "EUR");
+  NumbeoData result = svc.getNumbeoData("Spain", "Ireland", "Madrid", "Dublin", reqAmount1,
+          65000, "EUR");
 
   assert result.getAmountCity1Numbeo() == reqAmount1;
   assert result.getAmountCity2Numbeo() > 0;
@@ -27,7 +28,8 @@ public class CostOfLivingNumbeoParserServiceTest {
   //Test city with not enough data
   public void testNotEnoughDataCity() throws NumbeoParsingException {
     int reqAmount1 = 50000;
-    NumbeoData result = svc.getNumbeoData("Spain", "Spain", "Aviles", "Torremolinos", reqAmount1, 65000, "EUR");
+    NumbeoData result = svc.getNumbeoData("Spain", "Spain", "Aviles", "Torremolinos", reqAmount1,
+            65000, "EUR");
     // result should be an empty object
     assert result.getAmountCity1Numbeo() == 0;
     assert result.getAmountCity2Numbeo() == 0;

@@ -18,4 +18,10 @@ public class CostOfLivingServiceTest {
     assert(result.contains("crime_index"));
   }
 
+  @Test
+  public void testGetPrices(){
+    String result = svc.getCitiesPrices("Madrid", "Spain");
+    assert(result.contains("Inexpensive Restaurant"));
+    assert(result.contains("item_name"));
+  }
 }
