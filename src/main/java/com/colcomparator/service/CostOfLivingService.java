@@ -6,6 +6,7 @@ import com.colcomparator.model.Cities;
 import com.colcomparator.model.CountriesAPI;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,9 +43,11 @@ public class CostOfLivingService {
         return data;
     }
 
+    @Value("${salservice.host}")
+    private String salservice;
 
     public List<String> getAvailableCities(){
-        String URLCountries = "http://localhost:8082/countries";
+        String URLCountries = "https://"+salservice+"/countries";
         CountriesAPI countries=this.restTemplate.getForObject(URLCountries, CountriesAPI.class);
         String URL="http://www.numbeo.com/api/cities?api_key=jr5prcv99u730v";
         Cities response=this.restTemplate.getForObject(URL, Cities.class);
